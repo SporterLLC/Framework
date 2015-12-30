@@ -8,12 +8,8 @@ class Bootstrap
 
 		public function __construct()
 		{
-
-			//$query = $this->database();
-
 			$this->settings();
 			$this->database();
-
 		}
 
 
@@ -33,22 +29,37 @@ class Bootstrap
 				'port'             => $db_info->get_db('port'),
 				'prefix'           => $db_info->get_db('dbprefix'),
  
-				// driver_option for connection, read more from http://www.php.net/manual/en/pdo.setattribute.php
+				// driver_option for connection, read more from
+				// http://www.php.net/manual/en/pdo.setattribute.php
 				'option'           => [
 					PDO::ATTR_CASE => PDO::CASE_NATURAL
 				]
 			]);
 
+			/*
+			 *
+			 * Read is much faster than Write,
+			 * while INSERT will increase load time by ~40ms per each query,
+			 * COUNT will only increase by ~2ms
+			 *
+			 */
+			$count = $database->count('site_log', [
+				'log_type' => 1
+			]);
+/*
 			$database->insert('site_log', [
 				'remote_addr' => '127.0.0.1',
 				'request_uri' => '/',
 				'log_type'    => 1,
 				'message'     => 'Test Query'
 			]);
+*/
+			echo 'The are ' . $count . ' rows in log with severity level of 1!<br />';
 
 		}
 
 
+		// Since it's being called from __constrcut, it will run before run()
 		private function settings()
 		{
 
@@ -59,6 +70,7 @@ class Bootstrap
 		}
 
 
+		// Since it's being called from __constrcut, it will run before run()
 		private function database()
 		{
 
@@ -68,6 +80,7 @@ class Bootstrap
 		}
 
 
+		// Since it's being outputed within __destrcut, it will run after run() and basically last
 		public function __destruct()
 		{
 

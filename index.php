@@ -5,9 +5,6 @@ session_start();
 // Define the time application started
 define('APP_START', (float) array_sum(explode(' ',microtime())));
 
-// Define ROOT path
-define('ROOTPATH', __DIR__);
-
 // Set file extension and postfixes
 $extension = 'php';
 $classfix = 'class';
@@ -74,7 +71,8 @@ switch (ENVIRONMENT)
 
 
 // Define EVNs
-define('APPPATH', __DIR__.'\\'.$application.'\\');
+define('ROOTPATH', __DIR__);
+define('APPPATH', ROOTPATH.'\\'.$application.'\\');
 define('BOOTPATH', APPPATH.$bootstrap.'\\');
 define('CONFPATH', APPPATH.$config.'\\');
 define('CONTROLLERPATH', APPPATH.$controller.'\\');
