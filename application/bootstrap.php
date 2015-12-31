@@ -6,10 +6,20 @@ class Bootstrap
 {
 
 
+		public $config;
+
+		protected $start_route;
+
+
+
 		public function __construct()
 		{
 			$this->settings();
+			$this->config = new Config();
 			$this->database();
+			$this->routing();
+			$start_route = new Route($this->config);
+			$start_route->initiate();
 		}
 
 
@@ -64,8 +74,6 @@ class Bootstrap
 		{
 
 			require BOOTPATH.'core\\config'.CLASSFIX.EXT;
-			$config = new Config();
-			echo 'Welcome to ' . $config->get_conf('site_name') . '<br />';
 
 		}
 
@@ -80,12 +88,24 @@ class Bootstrap
 		}
 
 
+		// Since it's being called from __constrcut, it will run before run()
+		private function routing()
+		{
+
+			require VENDORPATH.'router'.CLASSFIX.EXT;
+			require BOOTPATH.'core\\router'.CLASSFIX.EXT;
+			return;
+
+		}
+
+
 		// Since it's being outputed within __destrcut, it will run after run() and basically last
 		public function __destruct()
 		{
 
 			$script_end = (float) array_sum( explode( ' ',microtime() ) );
 
+			echo 'Welcome to ' . $this->config->get_conf('site_name') . '<br />';
 			echo 'Processing time: '. sprintf( '%.4f', ( $script_end - APP_START ) ).' seconds';
 
 		}

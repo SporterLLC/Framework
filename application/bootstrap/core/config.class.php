@@ -41,7 +41,7 @@ class Config
 	private function get_conf_array()
 	{
 
-		$config = require APPPATH.'/configuration/config.php';
+		$config = require CONFPATH.'config.php';
 		return $config;
 
 	}

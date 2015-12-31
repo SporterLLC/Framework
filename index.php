@@ -8,11 +8,13 @@ define('APP_START', (float) array_sum(explode(' ',microtime())));
 // Set file extension and postfixes
 $extension = 'php';
 $classfix = 'class';
+$controllerfix = 'controller';
 
 // Set directory names and their paths
 $application = 'application';
 $bootstrap   = 'bootstrap';
-$config      = 'config';
+$config      = 'configuration';
+$vendor      = 'vendor';
 $controller  = 'controller';
 $model       = 'model';
 $view        = 'view';
@@ -75,11 +77,13 @@ define('ROOTPATH', __DIR__);
 define('APPPATH', ROOTPATH.'\\'.$application.'\\');
 define('BOOTPATH', APPPATH.$bootstrap.'\\');
 define('CONFPATH', APPPATH.$config.'\\');
+define('VENDORPATH', BOOTPATH.$vendor.'\\');
 define('CONTROLLERPATH', APPPATH.$controller.'\\');
 define('MODELPATH', APPPATH.$model.'\\');
 define('VIEWPATH', APPPATH.$view.'\\');
 define('EXT', '.'.$extension);
 define('CLASSFIX', '.'.$classfix);
+define('CONTROLLERFIX', '_'.$controllerfix);
 
 
 require APPPATH.'bootstrap.php';
