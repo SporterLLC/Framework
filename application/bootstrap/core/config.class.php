@@ -41,8 +41,8 @@ class Config
 	private function get_conf_array()
 	{
 
-		$config = require CONFPATH.'config.php';
-		return $config;
+		$this->config = require CONFPATH.'config.php';
+		return $this->config;
 
 	}
 

@@ -8,9 +8,6 @@ class Bootstrap
 
 		public $config;
 
-		protected $start_route;
-
-
 
 		public function __construct()
 		{

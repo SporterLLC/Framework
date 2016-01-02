@@ -9,11 +9,21 @@ class Route extends Router
 	protected $route;
 
 
+	private static $handle_error = [
+		'errors/errors',
+		'ErrorHandler',
+		'not_found'
+	];
+
+
+	private $error = FALSE;
+
+
 
 	public function __construct($config)
 	{
 
-		$this->start = $this->get_routes($config);
+		$this->get_routes($config);
 		return;
 
 	}
@@ -33,20 +43,21 @@ class Route extends Router
 			}
 			else
 			{
-				$lolwat = ['errors/errors', 'ErrorHandler', 'not_found'];
-				$controller_class = $lolwat[0];
-				$controller_name = $lolwat[1];
-				$action = $lolwat[2];
+				$this->error = TRUE;
 			}
 		}
 		else
 		{
-			$lolwat = ['errors/errors', 'ErrorHandler', 'not_found'];
-			$controller_class = $lolwat[0];
-			$controller_name = $lolwat[1];
-			$action = $lolwat[2];
-			$match['params'] = array();
+			$this->error = TRUE;
 		}
+
+		if($this->error)
+		{
+            $controller_class = self::$handle_error[0];
+            $controller_name = self::$handle_error[1];
+            $action = self::$handle_error[2];
+			$this->error = FALSE;
+        }
 		include CONTROLLERPATH.$controller_class.CONTROLLERFIX.EXT;
 		$controller = new $controller_name();
 		call_user_func_array( array($controller, $action), $match['params'] );
@@ -68,7 +79,7 @@ class Route extends Router
 	private function get_routes($config)
 	{
 
-		$route = require CONFPATH.'router.php';
+		$this->route = require CONFPATH.'router.php';
 		$this->handle_route($match);
 		//return $route;
 
