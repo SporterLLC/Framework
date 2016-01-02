@@ -65,11 +65,50 @@ class Route extends Router
 			$action = self::$handle_error[2];
 			// Resets $error to default value FALSE.
 			$this->error = FALSE;
-        }
-		include CONTROLLERPATH.$controller_class.CONTROLLERFIX.EXT;
-		$controller = new $controller_name();
-		call_user_func_array( array($controller, $action), $match['params'] );
-		//var_dump([$controller, $action]);
+		}
+
+		try
+		{
+			$get_file = CONTROLLERPATH.$controller_class.CONTROLLERFIX.EXT;
+
+
+			if ( file_exists( $get_file ) )
+			{
+				include $get_file;
+				$continue = TRUE;
+			}
+			else
+			{
+				$continue = FALSE;
+			}
+
+
+			if ( class_exists( $controller_name ) )
+			{
+				$controller = new $controller_name();
+				$continue = TRUE;
+			}
+			else
+			{
+				$continue = FALSE;
+			}
+
+
+			if ( $continue == TRUE )
+			{
+				call_user_func_array( array($controller, $action), $match['params'] );
+				//var_dump([$controller, $action]);
+			}
+			else
+			{
+				header( $_SERVER["SERVER_PROTOCOL"] . ' 500 Internal Server Error', TRUE, 500);
+			}
+			
+		}
+		catch (Exception $e)
+		{
+			header( $_SERVER["SERVER_PROTOCOL"] . ' 500 Internal Server Error', TRUE, 500);
+		}
 
 	}
 
