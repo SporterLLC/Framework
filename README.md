@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/snopboy/Sporter.svg?branch=master)](https://travis-ci.org/snopboy/Sporter)
+[![Build Status](https://travis-ci.org/snopboy/Sporter.svg?branch=development)](https://travis-ci.org/snopboy/Sporter)
 # Sporter Framework
 > Not available at the moment.
 
