@@ -36,6 +36,11 @@ class Route extends Router
 		if ( $match )
 		{
 			list( $controller_class, $action ) = explode( '@', $match['target'] );
+			/**
+			 * If file exist, sets the following
+			 * $controller_class - used for retrieving the file that holds the controller class
+			 * $controller_name - used as the class name when instantiating the new controller class
+			 */
 			if ( file_exists( CONTROLLERPATH.$controller_class.CONTROLLERFIX.EXT ) )
 			{
 				$controller_class = $controller_class;
@@ -43,19 +48,22 @@ class Route extends Router
 			}
 			else
 			{
+				// Triggers the error controller
 				$this->error = TRUE;
 			}
 		}
 		else
 		{
+			// Triggers the error controller
 			$this->error = TRUE;
 		}
 
 		if($this->error)
 		{
-            $controller_class = self::$handle_error[0];
-            $controller_name = self::$handle_error[1];
-            $action = self::$handle_error[2];
+			$controller_class = self::$handle_error[0];
+			$controller_name = self::$handle_error[1];
+			$action = self::$handle_error[2];
+			// Resets $error to default value FALSE.
 			$this->error = FALSE;
         }
 		include CONTROLLERPATH.$controller_class.CONTROLLERFIX.EXT;
