@@ -22,10 +22,8 @@ class Route extends Router
 
 	public function __construct($config)
 	{
-
 		$this->get_routes($config);
 		return;
-
 	}
 
 
@@ -36,6 +34,7 @@ class Route extends Router
 		if ( $match )
 		{
 			list( $controller_class, $action ) = explode( '@', $match['target'] );
+
 			/**
 			 * If file exist, sets the following
 			 * $controller_class - used for retrieving the file that holds the controller class
@@ -58,6 +57,7 @@ class Route extends Router
 			$this->error = TRUE;
 		}
 
+
 		if($this->error)
 		{
 			$controller_class = self::$handle_error[0];
@@ -67,8 +67,10 @@ class Route extends Router
 			$this->error = FALSE;
 		}
 
+
 		try
 		{
+
 			$get_file = CONTROLLERPATH.$controller_class.CONTROLLERFIX.EXT;
 
 
@@ -94,9 +96,9 @@ class Route extends Router
 			}
 
 
-			if ( $continue == TRUE )
+			if ( $continue )
 			{
-				call_user_func_array( array($controller, $action), $match['params'] );
+				call_user_func_array( [$controller, $action], $match['params'] );
 				//var_dump([$controller, $action]);
 			}
 			else
@@ -116,22 +118,17 @@ class Route extends Router
 
 	public function initiate()
 	{
-
 		//initiated through __construct
-
 	}
 
 
 
 	private function get_routes($config)
 	{
-
 		$this->route = require CONFPATH.'router.php';
 		$this->handle_route($match);
 		//return $route;
-
 	}
-
 
 
 }

@@ -1,5 +1,50 @@
 <?php
 
+/**
+ * @author      Snopboy (https://github.com/Snopboy)
+ * @copyright   Copyright (c) 2015 Sporter
+ *
+ * @link        https://github.com/Snopboy/Sporter
+ *
+ * @version     2.0.0.1
+ */
+
+
+/**\
+|* The following code is a work of fiction.
+|* Variables, methods, classes and interfaces are either the
+|* products of the author's imagination or used in a fictitious manner.
+|* Any resemblance to actual persons's code, living, dead or in coma is purely coincidental.
+\**/
+
+
+/**
+ *	WARNING:	The code that follows will make you cry;
+ *				A safety pig is provided below for your benefit
+ *
+ *                           _
+ *   _._ _..._ .-',     _.._(`))
+ *  '-. `     '  /-._.-'    ',/
+ *     )         \            '.
+ *    / _    _    |             \
+ *   |  a    a    /              |
+ *   \   .-.                     ;  
+ *    '-('' ).-'       ,'       ;
+ *       '-;           |      .'
+ *          \           \    /
+ *          | 7  .__  _.-\   \
+ *          | |  |  ``/  /`  /
+ *         /,_|  |   /,_/   /
+ *            /,_/      '`-'
+ *
+ */
+
+/**
+ *	TODO
+ *	Error check, if there's a fatal error, print
+ *	'THE SYSTEM IS FUCKED, PLEASE BEAR WITH US' ;^)
+ */
+
 session_start();
 
 // Define the time application started
