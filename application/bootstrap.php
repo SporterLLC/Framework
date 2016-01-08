@@ -61,7 +61,7 @@ class Bootstrap
 				'message'     => 'Test Query'
 			]);
 */
-			echo 'The are ' . $count . ' rows in log with severity level of 1!<br />';
+		//	echo 'The are ' . $count . ' rows in log with severity level of 1!<br />';
 
 		}
 
@@ -102,8 +102,8 @@ class Bootstrap
 
 			$script_end = (float) array_sum( explode( ' ',microtime() ) );
 
-			echo 'Welcome to ' . $this->config->get_conf('site_name') . '<br />';
-			echo 'Processing time: '. sprintf( '%.4f', ( $script_end - APP_START ) ).' seconds';
+		//	echo 'Welcome to ' . $this->config->get_conf('site_name') . '<br />';
+		//	echo 'Processing time: '. sprintf( '%.4f', ( $script_end - APP_START ) ).' seconds';
 
 		}
 

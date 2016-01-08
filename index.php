@@ -3,9 +3,7 @@
 /**
  * @author      Snopboy (https://github.com/Snopboy)
  * @copyright   Copyright (c) 2015 Sporter
- *
  * @link        https://github.com/Snopboy/Sporter
- *
  * @version     2.0.0.1
  */
 
@@ -51,9 +49,10 @@ session_start();
 define('APP_START', (float) array_sum(explode(' ',microtime())));
 
 // Set file extension and postfixes
-$extension = 'php';
-$classfix = 'class';
+$extension     = 'php';
+$classfix      = 'class';
 $controllerfix = 'controller';
+$errorfix      = 'error';
 
 // Set directory names and their paths
 $application = 'application';
@@ -129,6 +128,7 @@ define('VIEWPATH', APPPATH.$view.'\\');
 define('EXT', '.'.$extension);
 define('CLASSFIX', '.'.$classfix);
 define('CONTROLLERFIX', '_'.$controllerfix);
+define('ERRORFIX', $errorfix.'_');
 
 
 require APPPATH.'bootstrap.php';

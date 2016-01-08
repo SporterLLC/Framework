@@ -9,10 +9,14 @@ class Route extends Router
 	protected $route;
 
 
-	private static $handle_error = [
+	private static $error_array = [
 		'errors/errors',
 		'ErrorHandler',
-		'not_found'
+		'not_found',
+		[
+			'code' => 404,
+			'name' => 'Not Found'
+		]
 	];
 
 
@@ -60,9 +64,10 @@ class Route extends Router
 
 		if($this->error)
 		{
-			$controller_class = self::$handle_error[0];
-			$controller_name = self::$handle_error[1];
-			$action = self::$handle_error[2];
+			$controller_class = self::$error_array[0];
+			$controller_name  = self::$error_array[1];
+			$action           = self::$error_array[2];
+			$match['params']  = self::$error_array[3];
 			// Resets $error to default value FALSE.
 			$this->error = FALSE;
 		}
@@ -99,7 +104,7 @@ class Route extends Router
 			if ( $continue )
 			{
 				call_user_func_array( [$controller, $action], $match['params'] );
-				//var_dump([$controller, $action]);
+			//	var_dump($match['params']);
 			}
 			else
 			{
