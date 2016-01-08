@@ -1,7 +1,7 @@
 <?php
 basename($_SERVER["PHP_SELF"]) == "errors_controller.php" ? die("No direct script access allowed") : '';
 
-class ErrorHandler
+class ErrorHandler extends Sporter
 {
 
 

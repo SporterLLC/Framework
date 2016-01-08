@@ -13,7 +13,14 @@ class Bootstrap
 		{
 			$this->settings();
 			$this->config = new Config();
+
+			//	TODO: write a 'date' handler to be loaded here
+			date_default_timezone_set(
+				$this->config->get_conf('timezone')
+			);
+
 			$this->database();
+			$this->sporter();
 			$this->routing();
 			$start_route = new Route($this->config);
 			$start_route->initiate();
@@ -80,6 +87,16 @@ class Bootstrap
 		{
 
 			require BOOTPATH.'core\\database'.CLASSFIX.EXT;
+			return;
+
+		}
+
+
+		// Since it's being called from __constrcut, it will run before run()
+		private function sporter()
+		{
+
+			require BOOTPATH.'core\\sporter'.EXT;
 			return;
 
 		}
