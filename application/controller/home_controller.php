@@ -12,8 +12,8 @@ class Home //Controller
 
 	function index()
 	{
-		echo 'Test Controller ' . __CLASS__ . '<br />';
-
+		$lol = 'Controller: '.get_class($this).'<br />Method: '.__FUNCTION__.'<br />';
+		echo $lol;
 	}
 
 }

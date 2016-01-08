@@ -12,7 +12,8 @@ class News //Controller
 
 	function index()
 	{
-		//
+		$lol = 'Controller: '.get_class($this).'<br />Method: '.__FUNCTION__.'<br />';
+		echo $lol;
 	}
 
 	function article($id = array())
@@ -23,7 +24,8 @@ class News //Controller
 
 	function test()
 	{
-		//
+		$lol = 'Controller: '.get_class($this).'<br />Method: '.__FUNCTION__.'<br />';
+		echo $lol;
 	}
 
 }
