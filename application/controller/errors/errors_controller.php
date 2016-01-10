@@ -1,15 +1,29 @@
 <?php
 basename($_SERVER["PHP_SELF"]) == "errors_controller.php" ? die("No direct script access allowed") : '';
 
-class ErrorHandler extends Sporter
+/**
+ * Sporter class added, it will handle all the core
+ * functionalities needed for getting config items, creating
+ * new SQL queries, loading views, switching languages, etc.
+ * It will serve as a safe bridge to provide the developer
+ * with tools for developing the application safely without
+ * opening holes in application's security. All controllers
+ * should extend Sporter class for this to work!
+ */
+
+class ErrorController extends Sporter
 {
 
 
+    //public $sporter;
     //protected $header;
    // protected $message;
 
 
-    public function __construct(){}
+    public function __construct()
+    {
+     //   $this->sporter = new Sporter;
+    }
 
 
     public function not_found($code, $name)

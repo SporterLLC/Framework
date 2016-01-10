@@ -124,5 +124,10 @@ class Bootstrap
 
 		}
 
+/*
+		function __autoload($class_name){
+			require_once VENDORPATH.$class_name.CLASSFIX.EXT;
+		}
+*/
 
 }

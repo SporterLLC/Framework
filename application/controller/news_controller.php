@@ -2,7 +2,7 @@
 basename($_SERVER["PHP_SELF"]) == "news_controller.php" ? die("No direct script access allowed") : '';
 
 
-class News //Controller
+class NewsController extends Sporter //Controller
 {
 
 	function __construct()
