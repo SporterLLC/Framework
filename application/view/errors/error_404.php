@@ -98,6 +98,19 @@
         <div class="content">
             <div class="title"><?=$code;?></div>
             <div class="small"><?=$name;?></div>
+            <div style="font-size:14px">
+			<?php
+
+			$sporter = new Sporter;
+		    $count = $sporter->database->count('site_log', [
+		    	'log_type' => 1
+		    ]);
+		    $getCount = (!empty($count) AND $count >= 1) ? $count : 0;
+		     
+		    echo "There are $getCount records of severe errors in our logs.";
+
+		    ?>
+		    </div>
         </div>
     </div>
     <footer>Copyright © <?=date('Y');?> <?=$this->config_item('site_name');?></footer>

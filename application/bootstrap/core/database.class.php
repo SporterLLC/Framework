@@ -6,14 +6,14 @@ class DatabaseInfo
 {
 
 
-	protected $database;
+	private $database;
+	private $start;
 
 
 
 	public function __construct()
 	{
 
-		require BOOTPATH.'database\\db'.CLASSFIX.EXT;
 		$this->start = $this->get_db_array();
 		return;
 
