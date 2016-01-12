@@ -278,7 +278,7 @@ class Router {
 					$pre = '\.';
 				}
 
-				//Older versions of PCRE require the 'P' in (?P<named>)
+				//Older versions of PCRE require_once the 'P' in (?P<named>)
 				$pattern = '(?:'
 						. ($pre !== '' ? $pre : null)
 						. '('

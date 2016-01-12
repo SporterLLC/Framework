@@ -3,10 +3,11 @@
 /**
  * @author      Snopboy (https://github.com/Snopboy)
  * @copyright   Copyright (c) 2015 Sporter
+ *
  * @link        https://github.com/Snopboy/Sporter
+ *
  * @version     2.0.0.1
  */
-
 
 /**\
 |* The following code is a work of fiction.
@@ -15,10 +16,9 @@
 |* Any resemblance to actual persons's code, living, dead or in coma is purely coincidental.
 \**/
 
-
 /**
  *	WARNING:	The code that follows will make you cry;
- *				A safety pig is provided below for your benefit
+ *				A safety pig is provided below for your benefit.
  *
  *                           _
  *   _._ _..._ .-',     _.._(`))
@@ -34,34 +34,32 @@
  *          | |  |  ``/  /`  /
  *         /,_|  |   /,_/   /
  *            /,_/      '`-'
- *
  */
 
 /**
  *	TODO
  *	Error check, if there's a fatal error, print
- *	'THE SYSTEM IS FUCKED, PLEASE BEAR WITH US' ;^)
+ *	'THE SYSTEM IS FUCKED, PLEASE BEAR WITH US' ;^).
  */
-
 session_start();
 
 // Define the time application started
-define('APP_START', (float) array_sum(explode(' ',microtime())));
+define('APP_START', (float) array_sum(explode(' ', microtime())));
 
 // Set file extension and postfixes
-$extension     = 'php';
-$classfix      = 'class';
+$extension = 'php';
+$classfix = 'class';
 $controllerfix = 'controller';
-$errorfix      = 'error';
+$errorfix = 'error';
 
 // Set directory names and their paths
 $application = 'application';
-$bootstrap   = 'bootstrap';
-$config      = 'configuration';
-$vendor      = 'vendor';
-$controller  = 'controller';
-$model       = 'model';
-$view        = 'view';
+$bootstrap = 'bootstrap';
+$config = 'configuration';
+$vendor = 'vendor';
+$controller = 'controller';
+$model = 'model';
+$view = 'view';
 
 /*
  *---------------------------------------------------------------
@@ -79,42 +77,36 @@ $view        = 'view';
 
 define('ENVIRONMENT', 'development');
 
-
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
  *---------------------------------------------------------------
  *
- * Different environments will require different levels of error reporting.
+ * Different environments will require_once different levels of error reporting.
  * By default development will show errors but testing and live will hide them.
  */
 
-switch (ENVIRONMENT)
-{
-	case 'development':
-		error_reporting(-1);
-		ini_set('display_errors', 1);
-	break;
+switch (ENVIRONMENT) {
+    case 'development':
+        error_reporting(-1);
+        ini_set('display_errors', 1);
+    break;
 
-	case 'testing':
-	case 'production':
-		ini_set('display_errors', 0);
-		if (version_compare(PHP_VERSION, '5.3', '>='))
-		{
-			error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT & ~E_USER_NOTICE & ~E_USER_DEPRECATED);
-		}
-		else
-		{
-			error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT & ~E_USER_NOTICE);
-		}
-	break;
+    case 'testing':
+    case 'production':
+        ini_set('display_errors', 0);
+        if (version_compare(PHP_VERSION, '5.3', '>=')) {
+            error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT & ~E_USER_NOTICE & ~E_USER_DEPRECATED);
+        } else {
+            error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT & ~E_USER_NOTICE);
+        }
+    break;
 
-	default:
-		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
-		echo 'The application environment is not set correctly.';
-		exit(1); // EXIT_ERROR
+    default:
+        header('HTTP/1.1 503 Service Unavailable.', true, 503);
+        echo 'The application environment is not set correctly.';
+        exit(1); // EXIT_ERROR
 }
-
 
 // Define EVNs
 define('ROOTPATH', __DIR__);
@@ -130,8 +122,7 @@ define('CLASSFIX', '.'.$classfix);
 define('CONTROLLERFIX', '_'.$controllerfix);
 define('ERRORFIX', $errorfix.'_');
 
-
-require APPPATH.'bootstrap.php';
+require_once APPPATH.'bootstrap.php';
 
 /*
 |--------------------------------------------------------------------------

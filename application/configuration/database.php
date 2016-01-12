@@ -1,5 +1,6 @@
 <?php
-basename($_SERVER["PHP_SELF"]) == "database.php" ? die("No direct script access allowed") : '';
+
+basename($_SERVER['PHP_SELF']) == 'database.php' ? die('No direct script access allowed') : '';
 
 /*
 | -------------------------------------------------------------------
@@ -26,14 +27,14 @@ basename($_SERVER["PHP_SELF"]) == "database.php" ? die("No direct script access 
 |				 to the table name when using the Query Builder class
 |	['db_debug'] TRUE/FALSE - Whether database errors should be displayed.
 */
-return array(
-	'hostname'  => 'localhost',
-	'username'  => 'root',
-	'password'  => '',
-	'database'  => 'sporter',
-	'dbdriver'  => 'mysql',
-	'dbcharset' => 'utf8',
-	'dbprefix'  => '',
-	'port'      => 3306,
-	'db_debug'  => (ENVIRONMENT !== 'production')
-);
+return [
+    'hostname'  => 'localhost',
+    'username'  => 'root',
+    'password'  => '',
+    'database'  => 'sporter',
+    'dbdriver'  => 'mysql',
+    'dbcharset' => 'utf8',
+    'dbprefix'  => '',
+    'port'      => 3306,
+    'db_debug'  => (ENVIRONMENT !== 'production'),
+];

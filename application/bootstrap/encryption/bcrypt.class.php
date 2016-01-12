@@ -1,5 +1,6 @@
 <?php
-basename($_SERVER["PHP_SELF"]) == "bcrypt.class.php" ? die("No direct script access allowed") : '';
+
+basename($_SERVER['PHP_SELF']) == 'bcrypt.class.php' ? die('No direct script access allowed') : '';
 /*
   By Marco Arment <me@marco.org>.
   This code is released in the public domain.
@@ -33,38 +34,49 @@ class Bcrypt
 
     public static function hash($password, $work_factor = 0)
     {
-        if (version_compare(PHP_VERSION, '5.3') < 0) throw new Exception('Bcrypt requires PHP 5.3 or above');
+        if (version_compare(PHP_VERSION, '5.3') < 0) {
+            throw new Exception('Bcrypt requires PHP 5.3 or above');
+        }
 
-        if (! function_exists('openssl_random_pseudo_bytes')) {
+        if (!function_exists('openssl_random_pseudo_bytes')) {
             throw new Exception('Bcrypt requires openssl PHP extension');
         }
 
-        if ($work_factor < 4 || $work_factor > 31) $work_factor = self::DEFAULT_WORK_FACTOR;
-        $salt = 
-            '$2a$' . str_pad($work_factor, 2, '0', STR_PAD_LEFT) . '$' .
+        if ($work_factor < 4 || $work_factor > 31) {
+            $work_factor = self::DEFAULT_WORK_FACTOR;
+        }
+        $salt =
+            '$2a$'.str_pad($work_factor, 2, '0', STR_PAD_LEFT).'$'.
             substr(
-                strtr(base64_encode(openssl_random_pseudo_bytes(16)), '+', '.'), 
+                strtr(base64_encode(openssl_random_pseudo_bytes(16)), '+', '.'),
                 0, 22
-            )
-        ;
+            );
+
         return crypt($password, $salt);
     }
 
-    public static function check($password, $stored_hash, $legacy_handler = NULL)
+    public static function check($password, $stored_hash, $legacy_handler = null)
     {
-        if (version_compare(PHP_VERSION, '5.3') < 0) throw new Exception('Bcrypt requires PHP 5.3 or above');
+        if (version_compare(PHP_VERSION, '5.3') < 0) {
+            throw new Exception('Bcrypt requires PHP 5.3 or above');
+        }
 
         if (self::is_legacy_hash($stored_hash)) {
-            if ($legacy_handler) return call_user_func($legacy_handler, $password, $stored_hash);
-            else throw new Exception('Unsupported hash format');
+            if ($legacy_handler) {
+                return call_user_func($legacy_handler, $password, $stored_hash);
+            } else {
+                throw new Exception('Unsupported hash format');
+            }
         }
 
         return crypt($password, $stored_hash) == $stored_hash;
     }
 
-    public static function is_legacy_hash($hash) { return substr($hash, 0, 4) != '$2a$'; }
+    public static function is_legacy_hash($hash)
+    {
+        return substr($hash, 0, 4) != '$2a$';
+    }
 }
-
 
 // =============================================================================
 // Or, if you don't want the class structure and just want standalone functions:
@@ -72,33 +84,45 @@ class Bcrypt
 
 function bcrypt_hash($password, $work_factor = 8)
 {
-    if (version_compare(PHP_VERSION, '5.3') < 0) throw new Exception('Bcrypt requires PHP 5.3 or above');
+    if (version_compare(PHP_VERSION, '5.3') < 0) {
+        throw new Exception('Bcrypt requires PHP 5.3 or above');
+    }
 
-    if (! function_exists('openssl_random_pseudo_bytes')) {
+    if (!function_exists('openssl_random_pseudo_bytes')) {
         throw new Exception('Bcrypt requires openssl PHP extension');
     }
 
-    if ($work_factor < 4 || $work_factor > 31) $work_factor = 8;
-    $salt = 
-        '$2a$' . str_pad($work_factor, 2, '0', STR_PAD_LEFT) . '$' .
+    if ($work_factor < 4 || $work_factor > 31) {
+        $work_factor = 8;
+    }
+    $salt =
+        '$2a$'.str_pad($work_factor, 2, '0', STR_PAD_LEFT).'$'.
         substr(
-            strtr(base64_encode(openssl_random_pseudo_bytes(16)), '+', '.'), 
+            strtr(base64_encode(openssl_random_pseudo_bytes(16)), '+', '.'),
             0, 22
-        )
-    ;
+        );
+
     return crypt($password, $salt);
 }
 
-function bcrypt_check($password, $stored_hash, $legacy_handler = NULL)
+function bcrypt_check($password, $stored_hash, $legacy_handler = null)
 {
-    if (version_compare(PHP_VERSION, '5.3') < 0) throw new Exception('Bcrypt requires PHP 5.3 or above');
+    if (version_compare(PHP_VERSION, '5.3') < 0) {
+        throw new Exception('Bcrypt requires PHP 5.3 or above');
+    }
 
     if (bcrypt_is_legacy_hash($stored_hash)) {
-        if ($legacy_handler) return call_user_func($legacy_handler, $password, $stored_hash);
-        else throw new Exception('Unsupported hash format');
+        if ($legacy_handler) {
+            return call_user_func($legacy_handler, $password, $stored_hash);
+        } else {
+            throw new Exception('Unsupported hash format');
+        }
     }
 
     return crypt($password, $stored_hash) == $stored_hash;
 }
 
-function bcrypt_is_legacy_hash($hash) { return substr($hash, 0, 4) != '$2a$'; }
+function bcrypt_is_legacy_hash($hash)
+{
+    return substr($hash, 0, 4) != '$2a$';
+}

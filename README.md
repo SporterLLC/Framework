@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/snopboy/Sporter.svg?branch=development)](https://travis-ci.org/snopboy/Sporter)
+[![Build Status](https://travis-ci.org/snopboy/Sporter.svg?branch=development)](https://travis-ci.org/snopboy/Sporter) [![StyleCI](https://styleci.io/repos/48797088/shield)](https://styleci.io/repos/48797088)
 # Sporter Framework
 > Not available at the moment.
 
