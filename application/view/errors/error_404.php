@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?=$name;?></title>
+    <title><?=$name; ?></title>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,600" rel="stylesheet" type="text/css">
     <style>
         html, body {
@@ -90,29 +90,29 @@
 <body>
     <div class="bar">
     	<div class="col-10">
-    		<div class="col-6 test-left">Welcome to <span style="font-weight:600;"><?=$this->config_item('site_name');?></span></div>
-    		<div class="col-6 test-right"><?=date("F j, Y, g:i a");?></div>
+    		<div class="col-6 test-left">Welcome to <span style="font-weight:600;"><?=$this->config_item('site_name'); ?></span></div>
+    		<div class="col-6 test-right"><?=date('F j, Y, g:i a'); ?></div>
     	</div>
     </div>
     <div class="container">
         <div class="content">
-            <div class="title"><?=$code;?></div>
-            <div class="small"><?=$name;?></div>
+            <div class="title"><?=$code; ?></div>
+            <div class="small"><?=$name; ?></div>
             <div style="font-size:14px">
 			<?php
 
-			$sporter = new Sporter;
-		    $count = $sporter->database->count('site_log', [
-		    	'log_type' => 1
-		    ]);
-		    $getCount = (!empty($count) AND $count >= 1) ? $count : 0;
-		     
-		    echo "There are $getCount records of severe errors in our logs.";
+            $sporter = new Sporter();
+            $count = $sporter->database->count('site_log', [
+                'log_type' => 1,
+            ]);
+            $getCount = (!empty($count) and $count >= 1) ? $count : 0;
 
-		    ?>
+            echo "There are $getCount records of severe errors in our logs.";
+
+            ?>
 		    </div>
         </div>
     </div>
-    <footer>Copyright © <?=date('Y');?> <?=$this->config_item('site_name');?></footer>
+    <footer>Copyright © <?=date('Y'); ?> <?=$this->config_item('site_name'); ?></footer>
 </body>
 </html>

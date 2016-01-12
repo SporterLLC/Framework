@@ -1,90 +1,81 @@
 <?php
-basename($_SERVER["PHP_SELF"]) == "bootstrap.php" ? die("No direct script access allowed") : '';
 
+basename($_SERVER['PHP_SELF']) == 'bootstrap.php' ? die('No direct script access allowed') : '';
 
-class Bootstrap
+class bootstrap
 {
+    public $config;
 
+    public function __construct()
+    {
+        $this->settings();
+        $this->config = new Config();
 
-		public $config;
+            //	TODO: write a 'date' handler to be loaded here
+            date_default_timezone_set(
+                $this->config->get_conf('timezone')
+            );
 
+        $this->database();
+        $this->sporter();
+        $this->routing();
+        $start_route = new Route($this->config);
+        $start_route->initiate();
+    }
 
-		public function __construct()
-		{
-			$this->settings();
-			$this->config = new Config();
+    public function run()
+    {
+    }
 
-			//	TODO: write a 'date' handler to be loaded here
-			date_default_timezone_set(
-				$this->config->get_conf('timezone')
-			);
+        // Since it's being called from __constrcut, it will run before run()
 
-			$this->database();
-			$this->sporter();
-			$this->routing();
-			$start_route = new Route($this->config);
-			$start_route->initiate();
-		}
+        private function settings()
+        {
+            require BOOTPATH.'core\\config'.CLASSFIX.EXT;
+        }
 
+        // Since it's being called from __constrcut, it will run before run()
 
-		public function run()
-		{}
+        private function database()
+        {
+            require BOOTPATH.'database\\db'.CLASSFIX.EXT;
+            require BOOTPATH.'core\\database'.CLASSFIX.EXT;
 
+            return;
+        }
 
-		// Since it's being called from __constrcut, it will run before run()
-		private function settings()
-		{
+        // Since it's being called from __constrcut, it will run before run()
 
-			require BOOTPATH.'core\\config'.CLASSFIX.EXT;
+        private function sporter()
+        {
+            require BOOTPATH.'core\\sporter'.EXT;
 
-		}
+            return;
+        }
 
+        // Since it's being called from __constrcut, it will run before run()
 
-		// Since it's being called from __constrcut, it will run before run()
-		private function database()
-		{
-			require BOOTPATH.'database\\db'.CLASSFIX.EXT;
-			require BOOTPATH.'core\\database'.CLASSFIX.EXT;
-			return;
-		}
+        private function routing()
+        {
+            require VENDORPATH.'router'.CLASSFIX.EXT;
+            require BOOTPATH.'core\\router'.CLASSFIX.EXT;
 
+            return;
+        }
 
-		// Since it's being called from __constrcut, it will run before run()
-		private function sporter()
-		{
+        // Since it's being outputed within __destrcut, it will run after run() and basically last
 
-			require BOOTPATH.'core\\sporter'.EXT;
-			return;
+        public function __destruct()
+        {
+            $script_end = (float) array_sum(explode(' ', microtime()));
 
-		}
-
-
-		// Since it's being called from __constrcut, it will run before run()
-		private function routing()
-		{
-
-			require VENDORPATH.'router'.CLASSFIX.EXT;
-			require BOOTPATH.'core\\router'.CLASSFIX.EXT;
-			return;
-
-		}
-
-
-		// Since it's being outputed within __destrcut, it will run after run() and basically last
-		public function __destruct()
-		{
-
-			$script_end = (float) array_sum( explode( ' ',microtime() ) );
-
-		//	echo 'Welcome to ' . $this->config->get_conf('site_name') . '<br />';
-		//	echo 'Processing time: '. sprintf( '%.4f', ( $script_end - APP_START ) ).' seconds';
-
-		}
+        //	echo 'Welcome to ' . $this->config->get_conf('site_name') . '<br />';
+        //	echo 'Processing time: '. sprintf( '%.4f', ( $script_end - APP_START ) ).' seconds';
+        }
 
 /*
-		function __autoload($class_name){
-			require_once VENDORPATH.$class_name.CLASSFIX.EXT;
-		}
+        function __autoload($class_name){
+            require_once VENDORPATH.$class_name.CLASSFIX.EXT;
+        }
 */
-
 }

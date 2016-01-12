@@ -1,31 +1,29 @@
 <?php
-basename($_SERVER["PHP_SELF"]) == "news_controller.php" ? die("No direct script access allowed") : '';
 
+basename($_SERVER['PHP_SELF']) == 'news_controller.php' ? die('No direct script access allowed') : '';
 
 class NewsController extends Sporter //Controller
 {
+    public function __construct()
+    {
+        $data = [];
+    }
 
-	function __construct()
-	{
-		$data = array();
-	}
+    public function index()
+    {
+        $lol = 'Controller: '.get_class($this).'<br />Method: '.__FUNCTION__.'<br />';
+        echo $lol;
+    }
 
-	function index()
-	{
-		$lol = 'Controller: '.get_class($this).'<br />Method: '.__FUNCTION__.'<br />';
-		echo $lol;
-	}
+    public function article($id = [])
+    {
+        $lol = 'Controller: '.get_class($this).'<br />Method: '.__FUNCTION__.'<br />Parameter: '.$id.'<br />';
+        echo $lol;
+    }
 
-	function article($id = array())
-	{
-		$lol = 'Controller: '.get_class($this).'<br />Method: '.__FUNCTION__.'<br />Parameter: '.$id.'<br />';
-		echo $lol;
-	}
-
-	function test()
-	{
-		$lol = 'Controller: '.get_class($this).'<br />Method: '.__FUNCTION__.'<br />';
-		echo $lol;
-	}
-
+    public function test()
+    {
+        $lol = 'Controller: '.get_class($this).'<br />Method: '.__FUNCTION__.'<br />';
+        echo $lol;
+    }
 }
