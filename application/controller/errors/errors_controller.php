@@ -1,15 +1,19 @@
 <?php
 basename($_SERVER["PHP_SELF"]) == "errors_controller.php" ? die("No direct script access allowed") : '';
 
-class ErrorHandler extends Sporter
+class ErrorController extends Sporter
 {
 
 
+    //public $sporter;
     //protected $header;
    // protected $message;
 
 
-    public function __construct(){}
+    public function __construct()
+    {
+     //   $this->sporter = new Sporter;
+    }
 
 
     public function not_found($code, $name)

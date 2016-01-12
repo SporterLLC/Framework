@@ -11,7 +11,7 @@ class Route extends Router
 
 	private static $error_array = [
 		'errors/errors',
-		'ErrorHandler',
+		'Error',
 		'not_found',
 		[
 			'code' => 404,
@@ -37,21 +37,23 @@ class Route extends Router
 
 		if ( $match )
 		{
+			$search  = 'Controller';
+			$replace = '';
+			$var     = $match['target'];
+
+			$match['target'] = str_replace($search, $replace, $var);
 			list( $controller_class, $action ) = explode( '@', $match['target'] );
 
+
 			/**
-			 * If file exist, sets the following
 			 * $controller_class - used for retrieving the file that holds the controller class
 			 * $controller_name - used as the class name when instantiating the new controller class
 			 */
-			if ( file_exists( CONTROLLERPATH.$controller_class.CONTROLLERFIX.EXT ) )
+			$controller_class = $controller_class;
+			$controller_name  = $controller_class;
+
+			if ( ! file_exists( CONTROLLERPATH.$controller_class.CONTROLLERFIX.EXT ) )
 			{
-				$controller_class = $controller_class;
-				$controller_name = $controller_class;
-			}
-			else
-			{
-				// Triggers the error controller
 				$this->error = TRUE;
 			}
 		}
@@ -60,6 +62,8 @@ class Route extends Router
 			// Triggers the error controller
 			$this->error = TRUE;
 		}
+
+		//var_dump($match);
 
 
 		if($this->error)
@@ -76,6 +80,8 @@ class Route extends Router
 		try
 		{
 
+			$controller_name .= 'Controller';
+
 			$get_file = CONTROLLERPATH.$controller_class.CONTROLLERFIX.EXT;
 
 
@@ -88,7 +94,6 @@ class Route extends Router
 			{
 				$continue = FALSE;
 			}
-
 
 			if ( class_exists( $controller_name ) )
 			{

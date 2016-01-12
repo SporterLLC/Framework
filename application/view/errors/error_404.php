@@ -73,20 +73,24 @@
            display: inline-block;
         }
 
-        .title {
-            font-size: 96px;
+        .title {/*
+            font-size: 96px;*/
+            font-size: 170px;
+            line-height: 134px;
             font-weight: 600;
         }
 
-        .small {
-            font-size: 36px;
+        .small {/*
+            font-size: 36px;*/
+            font-size: 66px;
+            line-height: 54px;
         }
     </style>
 </head>
 <body>
     <div class="bar">
     	<div class="col-10">
-    		<div class="col-6 test-left">Welcome to <span style="font-weight:600;"><?php $config = new Config;?><?=$config->get_conf('site_name');?></span></div>
+    		<div class="col-6 test-left">Welcome to <span style="font-weight:600;"><?=$this->config_item('site_name');?></span></div>
     		<div class="col-6 test-right"><?=date("F j, Y, g:i a");?></div>
     	</div>
     </div>
@@ -94,8 +98,21 @@
         <div class="content">
             <div class="title"><?=$code;?></div>
             <div class="small"><?=$name;?></div>
+            <div style="font-size:14px">
+			<?php
+
+			$sporter = new Sporter;
+		    $count = $sporter->database->count('site_log', [
+		    	'log_type' => 1
+		    ]);
+		    $getCount = (!empty($count) AND $count >= 1) ? $count : 0;
+		     
+		    echo "There are $getCount records of severe errors in our logs.";
+
+		    ?>
+		    </div>
         </div>
     </div>
-    <footer>Copyright © <?=date('Y');?> Sporter</footer>
+    <footer>Copyright © <?=date('Y');?> <?=$this->config_item('site_name');?></footer>
 </body>
 </html>

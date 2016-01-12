@@ -6,9 +6,9 @@ $router = new Router();
 
 $router->setBasePath( $config->get_conf('base_url') );
 
-$router->map('GET','/', 'Home@index', 'homepage');
-$router->map('GET','/news', 'News@index', 'news');
-$router->map('GET','/news/test', 'News@test', 'test');
-$router->map('GET','/news/[i:id]', 'News@article', 'article');
+$router->map('GET','/', 'DefaultController@index', 'homepage');
+$router->map('GET','/news', 'NewsController@index', 'news');
+$router->map('GET','/news/test', 'NewsController@test', 'test');
+$router->map('GET','/news/[i:id]', 'NewsController@article', 'article');
 
 $match = $router->match();
