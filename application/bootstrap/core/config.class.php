@@ -4,19 +4,17 @@ basename($_SERVER['PHP_SELF']) == 'config.class.php' ? die('No direct script acc
 
 class Config
 {
-    protected $config;
+    public $config = [];
 
     public function __construct()
     {
-        $this->start = $this->get_conf_array();
-
-        return;
+        $this->get_conf_array();
     }
 
     public function get_conf($property)
     {
-        if (array_key_exists($property, $this->start)) {
-            $value = $this->start[$property];
+        if (array_key_exists($property, $this->config)) {
+            $value = $this->config[$property];
         } else {
             $value = ['error' => 'key not found'];
         }
@@ -26,8 +24,8 @@ class Config
 
     private function get_conf_array()
     {
-        $this->config = require_once CONFPATH.'config.php';
+        $this->config = require CONFPATH.'config.php';
 
-        return $this->config;
+    //    return $this->config;
     }
 }

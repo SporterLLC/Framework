@@ -5,19 +5,16 @@ basename($_SERVER['PHP_SELF']) == 'database.class.php' ? die('No direct script a
 class DatabaseInfo
 {
     private $database;
-    private $start;
 
     public function __construct()
     {
-        $this->start = $this->get_db_array();
-
-        return;
+        $this->get_db_array();
     }
 
     public function get_db($property)
     {
-        if (array_key_exists($property, $this->start)) {
-            $value = $this->start[$property];
+        if (array_key_exists($property, $this->database)) {
+            $value = $this->database[$property];
         } else {
             $value = ['error' => 'key not found'];
         }
@@ -27,8 +24,8 @@ class DatabaseInfo
 
     private function get_db_array()
     {
-        $this->database = require_once APPPATH.'/configuration/database.php';
+        $this->database = require CONFPATH.'database.php';
 
-        return $this->database;
+    //    return $this->database;
     }
 }

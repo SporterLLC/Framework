@@ -128,8 +128,8 @@ class sporter
 
         if ($continue) {
             // Check whether the provided key exists in config array
-            if (array_key_exists($property, $config->start)) {
-                $value = $config->start[$property];
+            if (array_key_exists($property, $config->config)) {
+                $value = $config->config[$property];
             } else {
                 $value = ['error' => 'key not found'];
             }
