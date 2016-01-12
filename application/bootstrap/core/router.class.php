@@ -98,7 +98,7 @@ class Route extends Router
 
     private function get_routes($config)
     {
-        $this->route = require CONFPATH.'router.php';
+        $this->route = require_once CONFPATH.'router.php';
         $this->handle_route($match);
         //return $route;
     }

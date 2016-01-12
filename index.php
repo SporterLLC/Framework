@@ -82,7 +82,7 @@ define('ENVIRONMENT', 'development');
  * ERROR REPORTING
  *---------------------------------------------------------------
  *
- * Different environments will require different levels of error reporting.
+ * Different environments will require_once different levels of error reporting.
  * By default development will show errors but testing and live will hide them.
  */
 
@@ -122,7 +122,7 @@ define('CLASSFIX', '.'.$classfix);
 define('CONTROLLERFIX', '_'.$controllerfix);
 define('ERRORFIX', $errorfix.'_');
 
-require APPPATH.'bootstrap.php';
+require_once APPPATH.'bootstrap.php';
 
 /*
 |--------------------------------------------------------------------------

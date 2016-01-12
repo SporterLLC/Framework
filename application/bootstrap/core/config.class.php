@@ -26,7 +26,7 @@ class Config
 
     private function get_conf_array()
     {
-        $this->config = require CONFPATH.'config.php';
+        $this->config = require_once CONFPATH.'config.php';
 
         return $this->config;
     }

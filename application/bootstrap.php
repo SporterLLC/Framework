@@ -31,15 +31,15 @@ class bootstrap
 
         private function settings()
         {
-            require BOOTPATH.'core\\config'.CLASSFIX.EXT;
+            require_once BOOTPATH.'core\\config'.CLASSFIX.EXT;
         }
 
         // Since it's being called from __constrcut, it will run before run()
 
         private function database()
         {
-            require BOOTPATH.'database\\db'.CLASSFIX.EXT;
-            require BOOTPATH.'core\\database'.CLASSFIX.EXT;
+            require_once BOOTPATH.'database\\db'.CLASSFIX.EXT;
+            require_once BOOTPATH.'core\\database'.CLASSFIX.EXT;
 
             return;
         }
@@ -48,7 +48,7 @@ class bootstrap
 
         private function sporter()
         {
-            require BOOTPATH.'core\\sporter'.EXT;
+            require_once BOOTPATH.'core\\sporter'.EXT;
 
             return;
         }
@@ -57,8 +57,8 @@ class bootstrap
 
         private function routing()
         {
-            require VENDORPATH.'router'.CLASSFIX.EXT;
-            require BOOTPATH.'core\\router'.CLASSFIX.EXT;
+            require_once VENDORPATH.'router'.CLASSFIX.EXT;
+            require_once BOOTPATH.'core\\router'.CLASSFIX.EXT;
 
             return;
         }

@@ -27,7 +27,7 @@ class DatabaseInfo
 
     private function get_db_array()
     {
-        $this->database = require APPPATH.'/configuration/database.php';
+        $this->database = require_once APPPATH.'/configuration/database.php';
 
         return $this->database;
     }
